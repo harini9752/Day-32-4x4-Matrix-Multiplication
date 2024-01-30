@@ -1,0 +1,20 @@
+module matrix_multiplier_4x4 (
+  input [15:0] matrix_a [0:3][0:3], // 4x4 matrix A
+  input [15:0] matrix_b [0:3][0:3], // 4x4 matrix B
+  output reg [15:0] result [0:3][0:3] // Resulting 4x4 matrix
+);
+
+  integer i, j, k;
+
+  always_comb begin
+    for (i = 0; i < 4; i = i + 1) begin
+      for (j = 0; j < 4; j = j + 1) begin
+        result[i][j] = 0;
+        for (k = 0; k < 4; k = k + 1) begin
+          result[i][j] = result[i][j] + matrix_a[i][k] * matrix_b[k][j];
+        end
+      end
+    end
+  end
+
+endmodule
